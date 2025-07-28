@@ -4,9 +4,9 @@ import { useState } from "react";
 import LoginPage from "./components/Login/LoginPage";
 
 // Layouts
-import AdminLayout from "./Layout/AdminLayout";
-import CoordinatorLayout from "./Layout/CoordinatorLayout";
-import TeacherLayout from "./Layout/TeacherLayout";
+import AdminLayout from "./layout/AdminLayout.jsx";
+import CoordinatorLayout from "./layout/CoordinatorLayout";
+import TeacherLayout from "./layout/TeacherLayout";
 
 // Admin Components
 import AdminDashboard from "./components/Admin/Dashboard.jsx";
