@@ -4,44 +4,56 @@ import { useState } from "react";
 import LoginPage from "./components/Login/LoginPage";
 
 // Layouts
-import AdminLayout from "./layout/AdminLayout.jsx";
+import AdminLayout from "./layout/AdminLayout";
 import CoordinatorLayout from "./layout/CoordinatorLayout";
 import TeacherLayout from "./layout/TeacherLayout";
 
 // Admin Components
-import AdminDashboard from "./components/Admin/Dashboard.jsx";
-import ManageUsers from "./components/Admin/ManageUsers.jsx";
-import ManageCourses from "./components/Admin/ManageCourses.jsx";
-import ManageDepartments from "./components/Admin/ManageDepartments.jsx";
-import AdminReports from "./components/Admin/Reports.jsx";
-import AdminSettings from "./components/Admin/Settings.jsx";
-import AdminProfile from "./components/Admin/AdminProfile.jsx";
+import AdminDashboard from "./components/Admin/Dashboard";
+import ManageUsers from "./components/Admin/ManageUsers";
+import ManageCourses from "./components/Admin/ManageCourses";
+import Teacher from "./components/Admin/Teacher";
+import AdminReports from "./components/Admin/Reports";
+import AdminSettings from "./components/Admin/Settings";
+import AdminProfile from "./components/Admin/AdminProfile";
+import WeeklyBreakdownUploader from "./components/Admin/WeeklyBreakdownUploader";
+import AttendanceViewer from "./components/Admin/AttendanceViewer";
+import Students from "./components/Admin/ManageStudents";
+import Registration from "./components/Admin/Registration";
+import Principals from "./components/Admin/Principals";
+import LessonPlan from './components/Admin/UploadLessonsPlans'
 
 // Coordinator Components
-import CoordinatorDashboard from "./components/Coordinator/Dashboard.jsx";
-import ManageClasses from "./components/Coordinator/ManageClasses.jsx";
-import AssignTeachers from "./components/Coordinator/AssignTeachers.jsx";
-import StudentList from "./components/Coordinator/StudentList.jsx";
-import AttendanceOverview from "./components/Coordinator/AttendanceOverview.jsx";
-import CoordinatorReports from "./components/Coordinator/Reports.jsx";
-import CoordinatorProfile from "./components/Coordinator/CoordinatorProfile.jsx";
+import CoordinatorDashboard from "./components/Coordinator/Dashboard";
+import CoordinatorManageUsers from "./components/Coordinator/ManageUsers";
+import CoordinatorManageCourses from "./components/Coordinator/ManageCourses";
+import CoordinatorTeacher from "./components/Coordinator/Teacher";
+import CoordinatorReports from "./components/Coordinator/Reports";
+import CoordinatorSettings from "./components/Coordinator/Settings";
+import CoordinatorProfile from "./components/Coordinator/CoordinatorProfile";
+import CoordinatorWeeklyBreakdownUploader from "./components/Coordinator/WeeklyBreakdownUploader";
+import CoordinatorAttendanceViewer from "./components/Coordinator/AttendanceViewer";
+import CoordinatorStudents from "./components/Coordinator/ManageStudents";
+import CoordinatorRegistration from "./components/Coordinator/Registration";
+import CoordinatorPrincipals from "./components/Coordinator/Principals";
+import CoordinatorLessonPlan from './components/Coordinator/UploadLessonsPlans'
+
 
 // Teacher Components
-import TeacherDashboard from "./components/Teacher/Dashboard.jsx";
-import MyClasses from "./components/Teacher/MyClasses.jsx";
-import TakeAttendance from "./components/Teacher/TakeAttendance.jsx";
-import AttendanceReport from "./components/Teacher/SeeAttendanceReport.jsx";
-import Gradebook from "./components/Teacher/Gradebook.jsx";
-import Resources from "./components/Teacher/Resources.jsx";
-import TeacherProfile from "./components/Teacher/TeacherProfile.jsx";
+import TeacherDashboard from "./components/Teacher/Dashboard";
+import TeacherManageUsers from "./components/Teacher/ManageUsers";
+import TeacherManageCourses from "./components/Teacher/ManageCourses";
+import TeacherTeacher from "./components/Teacher/Teacher";
+import TeacherReports from "./components/Teacher/Reports";
+import TeacherSettings from "./components/Teacher/Settings";
+import TeacherProfile from "./components/Teacher/TeacherProfile";
+import TeacherWeeklyBreakdownUploader from "./components/Teacher/WeeklyBreakdownUploader";
+import TeacherAttendanceViewer from "./components/Teacher/AttendanceViewer";
+import TeacherStudents from "./components/Teacher/ManageStudents";
+import TeacherRegistration from "./components/Teacher/Registration";
+import TeacherPrincipals from "./components/Teacher/Principals";
+import TeacherLessonPlan from './components/Teacher/UploadLessonsPlans'
 
-// ProtectedRoute wrapper
-const ProtectedRoute = ({ children, role }) => {
-  if (!role) {
-    return <Navigate to="/login" replace />;
-  }
-  return children;
-};
 
 function App() {
   const [role, setRole] = useState(null);
@@ -52,66 +64,52 @@ function App() {
         <Route path="/login" element={<LoginPage setRole={setRole} />} />
 
         {/* Admin Routes */}
-        <Route
-          path="/admin/*"
-          element={
-            <ProtectedRoute role={role}>
-              <AdminLayout>
-                <Routes>
-                  <Route path="dashboard" element={<AdminDashboard />} />
-                  <Route path="users" element={<ManageUsers />} />
-                  <Route path="courses" element={<ManageCourses />} />
-                  <Route path="departments" element={<ManageDepartments />} />
-                  <Route path="reports" element={<AdminReports />} />
-                  <Route path="settings" element={<AdminSettings />} />
-                  <Route path="profile" element={<AdminProfile />} />
-                </Routes>
-              </AdminLayout>
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/admin/dashboard" element={<AdminLayout><AdminDashboard /></AdminLayout>} />
+        <Route path="/admin/students" element={<AdminLayout><Students /></AdminLayout>} />
+        <Route path="/admin/users" element={<AdminLayout><ManageUsers /></AdminLayout>} />
+        <Route path="/admin/courses" element={<AdminLayout><ManageCourses /></AdminLayout>} />
+        <Route path="/admin/teacher" element={<AdminLayout><Teacher /></AdminLayout>} />
+        <Route path="/admin/reports" element={<AdminLayout><AdminReports /></AdminLayout>} />
+        <Route path="/admin/settings" element={<AdminLayout><AdminSettings /></AdminLayout>} />
+        <Route path="/admin/profile" element={<AdminLayout><AdminProfile /></AdminLayout>} />
+        <Route path="/admin/weekly-breakdown" element={<AdminLayout><WeeklyBreakdownUploader /></AdminLayout>} />
+        <Route path="/admin/attendance" element={<AdminLayout><AttendanceViewer /></AdminLayout>} />
+        <Route path="/admin/registration" element={<AdminLayout><Registration /></AdminLayout>} />
+        <Route path="/admin/principals" element={<AdminLayout><Principals /></AdminLayout>} />
+        <Route path="/admin/lesson-plan" element={<AdminLayout><LessonPlan /></AdminLayout>} />
+
 
         {/* Coordinator Routes */}
-        <Route
-          path="/coordinator/*"
-          element={
-            <ProtectedRoute role={role}>
-              <CoordinatorLayout>
-                <Routes>
-                  <Route path="dashboard" element={<CoordinatorDashboard />} />
-                  <Route path="classes" element={<ManageClasses />} />
-                  <Route path="assign-teachers" element={<AssignTeachers />} />
-                  <Route path="students" element={<StudentList />} />
-                  <Route path="attendance" element={<AttendanceOverview />} />
-                  <Route path="reports" element={<CoordinatorReports />} />
-                  <Route path="profile" element={<CoordinatorProfile />} />
-                </Routes>
-              </CoordinatorLayout>
-            </ProtectedRoute>
-          }
-        />
+       <Route path="/coordinator/dashboard" element={<CoordinatorLayout><CoordinatorDashboard /></CoordinatorLayout>} />
+        <Route path="/coordinator/students" element={<CoordinatorLayout><CoordinatorStudents /></CoordinatorLayout>} />
+        <Route path="/coordinator/users" element={<CoordinatorLayout><CoordinatorManageUsers /></CoordinatorLayout>} />
+        <Route path="/coordinator/courses" element={<CoordinatorLayout><CoordinatorManageCourses /></CoordinatorLayout>} />
+        <Route path="/coordinator/teacher" element={<CoordinatorLayout><CoordinatorTeacher /></CoordinatorLayout>} />
+        <Route path="/coordinator/reports" element={<CoordinatorLayout><CoordinatorReports /></CoordinatorLayout>} />
+        <Route path="/coordinator/settings" element={<CoordinatorLayout><CoordinatorSettings /></CoordinatorLayout>} />
+        <Route path="/coordinator/profile" element={<CoordinatorLayout><CoordinatorProfile /></CoordinatorLayout>} />
+        <Route path="/coordinator/weekly-breakdown" element={<CoordinatorLayout><CoordinatorWeeklyBreakdownUploader /></CoordinatorLayout>} />
+        <Route path="/coordinator/attendance" element={<CoordinatorLayout><CoordinatorAttendanceViewer /></CoordinatorLayout>} />
+        <Route path="/coordinator/registration" element={<CoordinatorLayout><CoordinatorRegistration /></CoordinatorLayout>} />
+        <Route path="/coordinator/principals" element={<CoordinatorLayout><CoordinatorPrincipals /></CoordinatorLayout>} />
+        <Route path="/coordinator/lesson-plan" element={<CoordinatorLayout><CoordinatorLessonPlan /></CoordinatorLayout>} />
 
         {/* Teacher Routes */}
-        <Route
-          path="/teacher/*"
-          element={
-            <ProtectedRoute role={role}>
-              <TeacherLayout>
-                <Routes>
-                  <Route path="dashboard" element={<TeacherDashboard />} />
-                  <Route path="classes" element={<MyClasses />} />
-                  <Route path="take-attendance" element={<TakeAttendance />} />
-                  <Route path="attendance-report" element={<AttendanceReport />} />
-                  <Route path="gradebook" element={<Gradebook />} />
-                  <Route path="resources" element={<Resources />} />
-                  <Route path="profile" element={<TeacherProfile />} />
-                </Routes>
-              </TeacherLayout>
-            </ProtectedRoute>
-          }
-        />
+       <Route path="/teacher/dashboard" element={<TeacherLayout><TeacherDashboard /></TeacherLayout>} />
+        <Route path="/teacher/students" element={<TeacherLayout><TeacherStudents /></TeacherLayout>} />
+        <Route path="/teacher/users" element={<TeacherLayout><TeacherManageUsers /></TeacherLayout>} />
+        <Route path="/teacher/courses" element={<TeacherLayout><TeacherManageCourses /></TeacherLayout>} />
+        <Route path="/teacher/teacher" element={<TeacherLayout><TeacherTeacher /></TeacherLayout>} />
+        <Route path="/teacher/reports" element={<TeacherLayout><TeacherReports /></TeacherLayout>} />
+        <Route path="/teacher/settings" element={<TeacherLayout><TeacherSettings /></TeacherLayout>} />
+        <Route path="/teacher/profile" element={<TeacherLayout><TeacherProfile /></TeacherLayout>} />
+        <Route path="/teacher/weekly-breakdown" element={<TeacherLayout><TeacherWeeklyBreakdownUploader /></TeacherLayout>} />
+        <Route path="/teacher/attendance" element={<TeacherLayout><TeacherAttendanceViewer /></TeacherLayout>} />
+        <Route path="/teacher/registration" element={<TeacherLayout><TeacherRegistration /></TeacherLayout>} />
+        <Route path="/teacher/principals" element={<TeacherLayout><TeacherPrincipals /></TeacherLayout>} />
+        <Route path="/teacher/lesson-plan" element={<TeacherLayout><TeacherLessonPlan /></TeacherLayout>} />
 
-        {/* Redirect any unknown route to login */}
+        {/* Catch-all */}
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>

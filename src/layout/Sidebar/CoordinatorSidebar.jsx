@@ -1,6 +1,21 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { MdChevronRight, MdChevronLeft, MdSettings, MdSupport, MdAnalytics, MdFolder, MdDashboard, MdClass, MdPersonAdd, MdPeople, MdFactCheck, MdBarChart, MdPerson } from "react-icons/md";
+import {
+  MdDashboard,
+  MdPeople,
+  MdLibraryBooks,
+  MdSchool,
+  MdHowToReg,
+  MdMenuBook,
+  MdBarChart,
+  MdSettings,
+  MdAdminPanelSettings,
+  MdPerson,
+  MdCalendarToday,
+  MdAssignmentInd,
+    MdChevronLeft,
+    MdChevronRight
+} from "react-icons/md";
 
 import "./Sidebar.css";
 
@@ -12,12 +27,19 @@ const CoordinatorSidebar = () => {
   };
 
   const menuItems = [
-    { icon: MdDashboard, label: "Dashboard", href: "/dashboard" },
-    { icon: MdFolder, label: "Projects", href: "/projects" },
-    { icon: MdAnalytics, label: "Analytics", href: "/analytics" },
-    { icon: MdPeople, label: "Team", href: "/team" },
-    { icon: MdSettings, label: "Settings", href: "/settings" },
-    { icon: MdSupport, label: "Support", href: "/support" },
+    { icon: MdDashboard, label: "Dashboard", href: "/coordinator/dashboard" },
+  { icon: MdPeople, label: "Students", href: "/coordinator/students" },
+  { icon: MdAdminPanelSettings, label: "Users", href: "/coordinator/users" },
+  { icon: MdLibraryBooks, label: "Courses", href: "/coordinator/courses" },
+  { icon: MdSchool, label: "Teacher", href: "/coordinator/teacher" },
+  { icon: MdHowToReg, label: "Registration", href: "/coordinator/registration" },
+  { icon: MdMenuBook, label: "Lesson Plan", href: "/coordinator/lesson-plan" },
+  { icon: MdBarChart, label: "Reports", href: "/coordinator/reports" },
+  { icon: MdSettings, label: "Settings", href: "/coordinator/settings" },
+  // { icon: MdAssignmentInd, label: "Principals", href: "/coordinator/principals" },
+  { icon: MdPerson, label: "Profile", href: "/coordinator/profile" },
+  { icon: MdCalendarToday, label: "Attendance", href: "/coordinator/attendance" },
+  { icon: MdMenuBook, label: "Weekly Breakdown", href: "/coordinator/weekly-breakdown" },
   ];
 
   return (

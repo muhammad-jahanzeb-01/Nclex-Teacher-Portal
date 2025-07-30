@@ -4,14 +4,19 @@ import {
   MdDashboard,
   MdPeople,
   MdLibraryBooks,
-  MdApartment,
+  MdSchool,
+  MdHowToReg,
+  MdMenuBook,
   MdBarChart,
   MdSettings,
+  MdAdminPanelSettings,
   MdPerson,
-  MdChevronLeft,
-  MdChevronRight,
-  MdAssignmentTurnedIn
+  MdCalendarToday,
+  MdAssignmentInd,
+    MdChevronLeft,
+    MdChevronRight
 } from "react-icons/md";
+
 
 import "./Sidebar.css";
 
@@ -23,13 +28,19 @@ const AdminSidebar = () => {
   };
 
   const menuItems = [
-    { icon: MdDashboard, label: "Dashboard", href: "/admin/dashboard" },
-    { icon: MdPeople, label: "Manage Users", href: "/admin/users" },
-    { icon: MdLibraryBooks, label: "Manage Courses", href: "/admin/courses" },
-    { icon: MdApartment, label: "Departments", href: "/admin/departments" },
-    { icon: MdBarChart, label: "Reports", href: "/admin/reports" },
-    { icon: MdSettings, label: "Settings", href: "/admin/settings" },
-    { icon: MdPerson, label: "Profile", href: "/admin/profile" },
+      { icon: MdDashboard, label: "Home", href: "/admin/dashboard" },
+  { icon: MdPeople, label: "Students", href: "/admin/students" },
+  { icon: MdAdminPanelSettings, label: "Users", href: "/admin/users" },
+  { icon: MdLibraryBooks, label: "Courses", href: "/admin/courses" },
+  { icon: MdSchool, label: "Teacher", href: "/admin/teacher" },
+  { icon: MdHowToReg, label: "Registration", href: "/admin/registration" },
+  { icon: MdMenuBook, label: "Lesson Plan", href: "/admin/lesson-plan" },
+  { icon: MdBarChart, label: "Reports", href: "/admin/reports" },
+  { icon: MdSettings, label: "Settings", href: "/admin/settings" },
+  { icon: MdAssignmentInd, label: "Principals", href: "/admin/principals" },
+  { icon: MdPerson, label: "Profile", href: "/admin/profile" },
+  { icon: MdCalendarToday, label: "Attendance", href: "/admin/attendance" },
+  { icon: MdMenuBook, label: "Weekly Breakdown", href: "/admin/weekly-breakdown" },
   ];
 
   return (

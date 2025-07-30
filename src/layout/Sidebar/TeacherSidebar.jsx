@@ -1,6 +1,21 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { MdDashboard, MdClass, MdCheckCircle, MdAssignmentTurnedIn, MdGrade, MdFolder, MdPerson, MdChevronLeft, MdChevronRight } from "react-icons/md";
+import {
+  MdDashboard,
+  MdPeople,
+  MdLibraryBooks,
+  MdSchool,
+  MdHowToReg,
+  MdMenuBook,
+  MdBarChart,
+  MdSettings,
+  MdAdminPanelSettings,
+  MdPerson,
+  MdCalendarToday,
+  MdAssignmentInd,
+    MdChevronLeft,
+    MdChevronRight
+} from "react-icons/md";
 import "./Sidebar.css";
 
 const TeacherSidebar = () => {
@@ -12,12 +27,18 @@ const TeacherSidebar = () => {
 
   const menuItems = [
     { icon: MdDashboard, label: "Dashboard", href: "/teacher/dashboard" },
-  { icon: MdClass, label: "My Classes", href: "/teacher/classes" },
-  { icon: MdCheckCircle, label: "Take Attendance", href: "/teacher/take-attendance" },
-  { icon: MdAssignmentTurnedIn, label: "Attendance Report", href: "/teacher/attendance-report" },
-  { icon: MdGrade, label: "Gradebook", href: "/teacher/gradebook" },
-  { icon: MdFolder, label: "Resources", href: "/teacher/resources" },
+  { icon: MdPeople, label: "Students", href: "/teacher/students" },
+  { icon: MdAdminPanelSettings, label: "Users", href: "/teacher/users" },
+  { icon: MdLibraryBooks, label: "Courses", href: "/teacher/courses" },
+  { icon: MdSchool, label: "Teacher", href: "/teacher/teacher" },
+  { icon: MdHowToReg, label: "Registration", href: "/teacher/registration" },
+  { icon: MdMenuBook, label: "Lesson Plan", href: "/teacher/lesson-plan" },
+  { icon: MdBarChart, label: "Reports", href: "/teacher/reports" },
+  { icon: MdSettings, label: "Settings", href: "/teacher/settings" },
+  { icon: MdAssignmentInd, label: "Principals", href: "/teacher/principals" },
   { icon: MdPerson, label: "Profile", href: "/teacher/profile" },
+  { icon: MdCalendarToday, label: "Attendance", href: "/teacher/attendance" },
+  { icon: MdMenuBook, label: "Weekly Breakdown", href: "/teacher/weekly-breakdown" },
 
   ];
 

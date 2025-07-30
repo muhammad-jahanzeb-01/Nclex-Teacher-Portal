@@ -1,0 +1,195 @@
+/* === Dashboard Styling === */
+.dashboard-container {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif !important;
+  background: #f8f9fb !important;
+  color: #111 !important;
+  display:flex ;
+  flex-direction: column;
+}
+
+.top-section {
+  display: flex !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 2rem;
+}
+
+.live-broadcasts h3,
+.search-section h3,
+.courses h3,
+.progress-section h3 {
+  font-size: 1.2rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.avatars {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.avatars img {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  border: 2px solid white !important;
+  box-shadow: 0 0 0 2px #4e73df !important;
+}
+
+.more-btn {
+  background: #4e73df !important;
+  color: white !important;
+  border: none !important;
+  padding: 5px 12px !important;
+  border-radius: 12px !important;
+  cursor: pointer !important;
+}
+
+.search-box {
+  display: flex !important;
+  gap: 0.5rem !important;
+  background: #f0f0f0 !important;
+  border-radius: 30px !important;
+  padding: 0.5rem 1rem !important;
+}
+
+.search-box input {
+  border: none !important;
+  background: transparent !important;
+  outline: none !important;
+  flex: 1 !important;
+}
+
+.search-box button {
+  background: #4e73df !important;
+  border: none !important;
+  color: white !important;
+  padding: 0.4rem 1rem !important;
+  border-radius: 20px !important;
+  cursor: pointer !important;
+}
+
+.main-section {
+  display: flex !important;
+  margin-top: 2rem !important;
+  gap: 2rem !important;
+  flex-wrap: wrap !important;
+}
+
+.courses {
+  flex: 2 !important;
+}
+
+.course-cards {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 1rem !important;
+}
+
+.course-card, .add-card {
+  padding: 1rem !important;
+  width: 200px !important;
+  border-radius: 20px !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.add-card {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  font-weight: bold !important;
+  color: #4e73df !important;
+  cursor: pointer !important;
+  background: rgba(255, 255, 255, 0.4) !important;
+}
+
+.course-card h4 {
+  font-size: 1rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.progress {
+  margin-top: 1rem !important;
+}
+
+.bar {
+  background: #ddd !important;
+  height: 5px !important;
+  border-radius: 5px !important;
+  overflow: hidden !important;
+}
+
+.filled {
+  background: #4e73df !important;
+  height: 100% !important;
+}
+
+.progress-section {
+  flex: 1 !important;
+}
+
+.progress-box {
+  display: flex !important;
+  align-items: center !important;
+  padding: 1rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.circular {
+  width: 80px !important;
+  height: 80px !important;
+  background: #4e73df !important;
+  color: white !important;
+  font-size: 1.5rem !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  border-radius: 50% !important;
+  margin-right: 1rem !important;
+}
+
+.popular .lecture {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  margin-bottom: 1rem !important;
+  padding: 0.8rem 1rem !important;
+}
+
+.lecture img {
+  width: 35px !important;
+  height: 35px !important;
+  border-radius: 50% !important;
+}
+
+.lecture h4 {
+  margin: 0 !important;
+  font-size: 0.95rem !important;
+}
+
+.lecture span {
+  font-size: 0.8rem !important;
+  color: #666 !important;
+}
+
+.lecture button {
+  margin-left: auto !important;
+  background: #4e73df !important;
+  border: none !important;
+  color: white !important;
+  padding: 0.3rem 0.6rem !important;
+  border-radius: 50% !important;  
+  font-size: 0.8rem !important;
+  cursor: pointer !important;
+}
+
+/* Common glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 20px !important;
+}
