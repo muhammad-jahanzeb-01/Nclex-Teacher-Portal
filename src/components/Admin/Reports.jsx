@@ -1,16 +1,16 @@
-// src/components/Reports.jsx
-
 "use client";
 
 import { useState, useEffect } from "react";
 import "./Reports.css";
+import { FaDownload } from "react-icons/fa";
 
 const Reports = () => {
   const [activeTab, setActiveTab] = useState("attendance");
   const [filters, setFilters] = useState({
     institute: "",
-    course: "",
+    coordinator: "",
     teacher: "",
+    course: "",
     dateRange: "",
   });
   const [attendanceData, setAttendanceData] = useState([]);
@@ -22,7 +22,6 @@ const Reports = () => {
   }, []);
 
   const loadReportsData = () => {
-    // Sample Institutes Data
     const sampleInstitutes = [
       {
         name: "Alpha Institute",
@@ -33,16 +32,16 @@ const Reports = () => {
               {
                 name: "Dr. Eleanor Harper",
                 students: ["Ethan Harper", "Liam Foster"],
-                courses: ["Data Science Fundamentals"]
+                courses: ["Data Science Fundamentals"],
               },
               {
                 name: "Ms. Olivia Carter",
                 students: ["Ava Mitchell"],
-                courses: ["Software Engineering Principles"]
-              }
-            ]
-          }
-        ]
+                courses: ["Software Engineering Principles"],
+              },
+            ],
+          },
+        ],
       },
       {
         name: "Beta Institute",
@@ -53,12 +52,12 @@ const Reports = () => {
               {
                 name: "Prof. Samuel Bennett",
                 students: ["Olivia Bennett", "Noah Carter"],
-                courses: ["Machine Learning Applications"]
-              }
-            ]
-          }
-        ]
-      }
+                courses: ["Machine Learning Applications"],
+              },
+            ],
+          },
+        ],
+      },
     ];
 
     const sampleAttendance = [
@@ -109,10 +108,7 @@ const Reports = () => {
   };
 
   const handleFilterChange = (field, value) => {
-    setFilters((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
+    setFilters((prev) => ({ ...prev, [field]: value }));
   };
 
   const filteredAttendanceData = attendanceData.filter((record) => {
@@ -128,11 +124,51 @@ const Reports = () => {
     return true;
   });
 
+  const exportToCSV = () => {
+    const headers =
+      activeTab === "attendance"
+        ? ["Student Name", "Course", "Date", "Status", "Institute"]
+        : ["Teacher Name", "Course", "Topic", "Date", "Duration", "Students Present", "Institute"];
+
+    const data =
+      activeTab === "attendance"
+        ? filteredAttendanceData.map((r) => [r.studentName, r.course, r.date, r.status, r.institute])
+        : filteredLectureData.map((r) => [r.teacherName, r.course, r.topic, r.date, r.duration, r.studentsPresent, r.institute]);
+
+    const csvContent =
+      "data:text/csv;charset=utf-8," +
+      [headers.join(","), ...data.map((row) => row.join(","))].join("\n");
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `${activeTab}_report.csv`);
+    document.body.appendChild(link);
+    link.click();
+  };
+
   return (
     <div className="reports">
-      <div className="page-header">
-        <h1>Reports</h1>
-        <p>View and analyze attendance and lecture activity reports</p>
+      <div className="reports-header">
+        <div className="header-left">
+          <h1>Reports</h1>
+          <p>Analyze attendance and lecture activity</p>
+        </div>
+        <div className="filters-section">
+          <div className="filters-grid">
+            <select value={filters.institute} onChange={(e) => handleFilterChange("institute", e.target.value)}>
+              <option value="">All Institutes</option>
+              {institutes.map((inst) => (
+                <option key={inst.name} value={inst.name}>{inst.name}</option>
+              ))}
+            </select>
+            <input type="text" placeholder="Course" value={filters.course} onChange={(e) => handleFilterChange("course", e.target.value)} />
+            {activeTab === "lecture" && (
+              <input type="text" placeholder="Teacher" value={filters.teacher} onChange={(e) => handleFilterChange("teacher", e.target.value)} />
+            )}
+            <input type="date" value={filters.dateRange} onChange={(e) => handleFilterChange("dateRange", e.target.value)} />
+          </div>
+        </div>
       </div>
 
       <div className="reports-tabs">
@@ -140,96 +176,82 @@ const Reports = () => {
         <button className={`tab-btn ${activeTab === "lecture" ? "active" : ""}`} onClick={() => setActiveTab("lecture")}>Lecture Activity</button>
       </div>
 
-      <div className="filters-section">
-        <h3>Filters</h3>
-        <div className="filters-grid">
-          <div className="filter-group">
-            <select value={filters.institute} onChange={(e) => handleFilterChange("institute", e.target.value)}>
-              <option value="">All Institutes</option>
-              {institutes.map((inst) => (
-                <option key={inst.name} value={inst.name}>{inst.name}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="filter-group">
-            <input type="text" placeholder="Course" value={filters.course} onChange={(e) => handleFilterChange("course", e.target.value)} />
-          </div>
-
-          {activeTab === "lecture" && (
-            <div className="filter-group">
-              <input type="text" placeholder="Teacher" value={filters.teacher} onChange={(e) => handleFilterChange("teacher", e.target.value)} />
-            </div>
-          )}
-
-          <div className="filter-group">
-            <input type="date" value={filters.dateRange} onChange={(e) => handleFilterChange("dateRange", e.target.value)} />
-          </div>
-        </div>
+      <div className="export-section">
+        <button className="download-btn" onClick={exportToCSV}>
+          <FaDownload /> Export
+        </button>
       </div>
 
       <div className="reports-content">
         {activeTab === "attendance" && (
           <div className="attendance-report">
             <h2>Attendance Report</h2>
-            <div className="report-table">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Student Name</th>
-                    <th>Course</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>Institute</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredAttendanceData.map((record) => (
-                    <tr key={record.id}>
-                      <td>{record.studentName}</td>
-                      <td>{record.course}</td>
-                      <td>{record.date}</td>
-                      <td><span className={`status ${record.status.toLowerCase()}`}>{record.status}</span></td>
-                      <td>{record.institute}</td>
+            {filteredAttendanceData.length === 0 ? (
+              <p className="empty-message">No attendance records found.</p>
+            ) : (
+              <div className="report-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Student Name</th>
+                      <th>Course</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                      <th>Institute</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {filteredAttendanceData.map((record) => (
+                      <tr key={record.id}>
+                        <td>{record.studentName}</td>
+                        <td>{record.course}</td>
+                        <td>{record.date}</td>
+                        <td><span className={`status ${record.status.toLowerCase()}`}>{record.status}</span></td>
+                        <td>{record.institute}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
         )}
 
         {activeTab === "lecture" && (
           <div className="lecture-report">
             <h2>Lecture Activity Report</h2>
-            <div className="report-table">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Teacher Name</th>
-                    <th>Course</th>
-                    <th>Topic</th>
-                    <th>Date</th>
-                    <th>Duration</th>
-                    <th>Students Present</th>
-                    <th>Institute</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredLectureData.map((record) => (
-                    <tr key={record.id}>
-                      <td>{record.teacherName}</td>
-                      <td>{record.course}</td>
-                      <td>{record.topic}</td>
-                      <td>{record.date}</td>
-                      <td>{record.duration}</td>
-                      <td>{record.studentsPresent}</td>
-                      <td>{record.institute}</td>
+            {filteredLectureData.length === 0 ? (
+              <p className="empty-message">No lecture activity records found.</p>
+            ) : (
+              <div className="report-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Teacher Name</th>
+                      <th>Course</th>
+                      <th>Topic</th>
+                      <th>Date</th>
+                      <th>Duration</th>
+                      <th>Students Present</th>
+                      <th>Institute</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {filteredLectureData.map((record) => (
+                      <tr key={record.id}>
+                        <td>{record.teacherName}</td>
+                        <td>{record.course}</td>
+                        <td>{record.topic}</td>
+                        <td>{record.date}</td>
+                        <td>{record.duration}</td>
+                        <td>{record.studentsPresent}</td>
+                        <td>{record.institute}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
         )}
       </div>
