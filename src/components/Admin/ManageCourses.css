@@ -79,7 +79,7 @@
 }
 
 .courses-table th {
-  background-color: #f4f6f8;
+  /* background-color: #f4f6f8; */
   font-weight: 600;
 }
 
@@ -144,4 +144,9 @@
 
 .modal-actions button:last-child {
   background-color: #ddd;
+}
+
+.thead{
+      background-color: #007bff !important;
+    color: white;
 }

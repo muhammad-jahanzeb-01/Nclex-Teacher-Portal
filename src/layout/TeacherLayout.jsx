@@ -1,5 +1,5 @@
 import TeacherHeader from "./Header/TeacherHeader";
-import AdminSidebar from "./Sidebar/AdminSidebar";
+import TeacherSidebar from "./Sidebar/TeacherSidebar";
 import "./Layout.css"; // Common layout styling
 
 const AdminLayout = ({ children }) => {
@@ -7,7 +7,7 @@ const AdminLayout = ({ children }) => {
     <div className="layout">
       <TeacherHeader />
       <div className="layout-body">
-        <AdminSidebar />
+        <TeacherSidebar />
         <main className="main-content">{children}</main>
       </div>
     </div>

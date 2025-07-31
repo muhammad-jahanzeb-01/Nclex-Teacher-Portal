@@ -19,9 +19,9 @@ import AdminProfile from "./components/Admin/AdminProfile";
 import WeeklyBreakdownUploader from "./components/Admin/WeeklyBreakdownUploader";
 import AttendanceViewer from "./components/Admin/AttendanceViewer";
 import Students from "./components/Admin/ManageStudents";
-import Registration from "./components/Admin/Registration";
+import Registration from "./components/Admin/Registrations";
 import Principals from "./components/Admin/Principals";
-import LessonPlan from './components/Admin/UploadLessonsPlans'
+import UploadLessonsPlans from './components/Admin/UploadLessonsPlans'; // ✅ Correct Import
 
 // Coordinator Components
 import CoordinatorDashboard from "./components/Coordinator/Dashboard";
@@ -36,8 +36,7 @@ import CoordinatorAttendanceViewer from "./components/Coordinator/AttendanceView
 import CoordinatorStudents from "./components/Coordinator/ManageStudents";
 import CoordinatorRegistration from "./components/Coordinator/Registration";
 import CoordinatorPrincipals from "./components/Coordinator/Principals";
-import CoordinatorLessonPlan from './components/Coordinator/UploadLessonsPlans'
-
+import CoordinatorLessonPlan from './components/Coordinator/UploadLessonsPlans';
 
 // Teacher Components
 import TeacherDashboard from "./components/Teacher/Dashboard";
@@ -52,8 +51,7 @@ import TeacherAttendanceViewer from "./components/Teacher/AttendanceViewer";
 import TeacherStudents from "./components/Teacher/ManageStudents";
 import TeacherRegistration from "./components/Teacher/Registration";
 import TeacherPrincipals from "./components/Teacher/Principals";
-import TeacherLessonPlan from './components/Teacher/UploadLessonsPlans'
-
+import TeacherLessonPlan from './components/Teacher/UploadLessonsPlans';
 
 function App() {
   const [role, setRole] = useState(null);
@@ -68,6 +66,7 @@ function App() {
         <Route path="/admin/students" element={<AdminLayout><Students /></AdminLayout>} />
         <Route path="/admin/users" element={<AdminLayout><ManageUsers /></AdminLayout>} />
         <Route path="/admin/courses" element={<AdminLayout><ManageCourses /></AdminLayout>} />
+       <Route path="/admin/courses/:courseName" element={<AdminLayout><UploadLessonsPlans /></AdminLayout>} />
         <Route path="/admin/teacher" element={<AdminLayout><Teacher /></AdminLayout>} />
         <Route path="/admin/reports" element={<AdminLayout><AdminReports /></AdminLayout>} />
         <Route path="/admin/settings" element={<AdminLayout><AdminSettings /></AdminLayout>} />
@@ -76,11 +75,10 @@ function App() {
         <Route path="/admin/attendance" element={<AdminLayout><AttendanceViewer /></AdminLayout>} />
         <Route path="/admin/registration" element={<AdminLayout><Registration /></AdminLayout>} />
         <Route path="/admin/principals" element={<AdminLayout><Principals /></AdminLayout>} />
-        <Route path="/admin/lesson-plan" element={<AdminLayout><LessonPlan /></AdminLayout>} />
-
+        <Route path="/admin/lesson-plan" element={<AdminLayout><UploadLessonsPlans /></AdminLayout>} /> {/* ✅ Fixed */}
 
         {/* Coordinator Routes */}
-       <Route path="/coordinator/dashboard" element={<CoordinatorLayout><CoordinatorDashboard /></CoordinatorLayout>} />
+        <Route path="/coordinator/dashboard" element={<CoordinatorLayout><CoordinatorDashboard /></CoordinatorLayout>} />
         <Route path="/coordinator/students" element={<CoordinatorLayout><CoordinatorStudents /></CoordinatorLayout>} />
         <Route path="/coordinator/users" element={<CoordinatorLayout><CoordinatorManageUsers /></CoordinatorLayout>} />
         <Route path="/coordinator/courses" element={<CoordinatorLayout><CoordinatorManageCourses /></CoordinatorLayout>} />
@@ -95,7 +93,7 @@ function App() {
         <Route path="/coordinator/lesson-plan" element={<CoordinatorLayout><CoordinatorLessonPlan /></CoordinatorLayout>} />
 
         {/* Teacher Routes */}
-       <Route path="/teacher/dashboard" element={<TeacherLayout><TeacherDashboard /></TeacherLayout>} />
+        <Route path="/teacher/dashboard" element={<TeacherLayout><TeacherDashboard /></TeacherLayout>} />
         <Route path="/teacher/students" element={<TeacherLayout><TeacherStudents /></TeacherLayout>} />
         <Route path="/teacher/users" element={<TeacherLayout><TeacherManageUsers /></TeacherLayout>} />
         <Route path="/teacher/courses" element={<TeacherLayout><TeacherManageCourses /></TeacherLayout>} />

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "./Registration.css";
-import { FaChalkboardTeacher, FaUserGraduate } from "react-icons/fa";
+import "./Registrations.css";
+import { FaChalkboardTeacher, FaUserGraduate, FaUserTie } from "react-icons/fa";
 
 const Registrations = () => {
-  const [selectedRole, setSelectedRole] = useState("Teacher");
+  const [selectedRole, setSelectedRole] = useState("Principal");
   const [showModal, setShowModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
@@ -19,6 +19,7 @@ const Registrations = () => {
   });
 
   const [entries, setEntries] = useState({
+    Principal: [],
     Teacher: [],
     Student: []
   });
@@ -83,6 +84,12 @@ const Registrations = () => {
       </div>
 
       <div className="registration-tabs">
+        <button
+          className={`tab-btn ${selectedRole === "Principal" ? "active" : ""}`}
+          onClick={() => setSelectedRole("Principal")}
+        >
+          <FaUserTie /> Principal
+        </button>
         <button
           className={`tab-btn ${selectedRole === "Teacher" ? "active" : ""}`}
           onClick={() => setSelectedRole("Teacher")}

@@ -1,103 +1,104 @@
-/* src/components/Admin/AdminProfile.css */
-
-/* .admin-dashboard-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 4rem 1rem;
-  background: #f2f5f9;
-  min-height: 100vh;
-  font-family: "Segoe UI", sans-serif;
-} */
-
 .admin-card {
+  max-width: 800px;
+  margin: 40px auto;
   background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  width: 100%;
-  max-width: 600px;
-  padding: 2.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  transition: all 0.3s ease-in-out;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 .admin-avatar-section {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 20px;
+  margin-bottom: 30px;
 }
 
 .admin-avatar {
-  width: 110px;
-  height: 110px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #4e73df;
 }
 
 .admin-avatar-section h2 {
-  font-size: 1.6rem;
+  font-size: 24px;
   margin: 0;
-  color: #2e3b4e;
+  color: #333;
 }
 
 .admin-avatar-section p {
   margin: 4px 0 0;
-  color: #777;
-  font-size: 0.95rem;
+  color: #6c757d;
 }
 
 .admin-info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
 }
 
 .info-box {
-  background: #f7f9fc;
-  padding: 1rem;
-  border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
 }
 
 .label {
-  font-size: 0.85rem;
-  color: #999;
+  font-size: 14px;
+  color: #888;
+  font-weight: 600;
 }
 
 .value {
-  font-weight: 600;
-  color: #2c3e50;
+  font-size: 16px;
+  color: #333;
 }
 
 .status {
-  color: #27ae60;
+  color: green;
+  font-weight: 600;
+}
+
+.input-edit {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+.name-input {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.role-input {
+  font-size: 15px;
+  color: #666;
 }
 
 .admin-actions {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
+  justify-content: flex-end;
+  gap: 15px;
 }
 
 .btn {
-  flex: 1;
-  padding: 0.75rem 1.2rem;
-  font-size: 0.95rem;
+  padding: 10px 16px;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  justify-content: center;
-  transition: all 0.3s ease-in-out;
+  gap: 8px;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
 }
 
 .edit-btn {
@@ -105,20 +106,39 @@
   color: #fff;
 }
 
+.edit-btn:hover {
+  background-color: #3a5ecb;
+}
+
 .logout-btn {
   background-color: #e74a3b;
   color: #fff;
 }
 
-.edit-btn:hover {
-  background-color: #3c5edb;
-}
-
 .logout-btn:hover {
-  background-color: #c0392b;
+  background-color: #d63628;
 }
 
-@media (max-width: 500px) {
+.save-btn {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.save-btn:hover {
+  background-color: #218838;
+}
+
+.cancel-btn {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.cancel-btn:hover {
+  background-color: #5a6268;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
   .admin-avatar-section {
     flex-direction: column;
     text-align: center;
@@ -126,9 +146,6 @@
 
   .admin-actions {
     flex-direction: column;
-  }
-
-  .btn {
-    width: 100%;
+    align-items: stretch;
   }
 }
