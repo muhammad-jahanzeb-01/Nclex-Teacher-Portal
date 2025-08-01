@@ -72,7 +72,7 @@ const ManageCourses = () => {
   };
 
   const handleRowClick = (courseName) => {
-    navigate(`/admin/courses/${encodeURIComponent(courseName)}`);
+    navigate(`/coordinator/courses/${encodeURIComponent(courseName)}`);
   };
 
   return (

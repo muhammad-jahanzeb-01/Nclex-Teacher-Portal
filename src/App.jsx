@@ -82,6 +82,7 @@ function App() {
         <Route path="/coordinator/students" element={<CoordinatorLayout><CoordinatorStudents /></CoordinatorLayout>} />
         <Route path="/coordinator/users" element={<CoordinatorLayout><CoordinatorManageUsers /></CoordinatorLayout>} />
         <Route path="/coordinator/courses" element={<CoordinatorLayout><CoordinatorManageCourses /></CoordinatorLayout>} />
+        <Route path="/coordinator/courses/:courseName" element={<CoordinatorLayout><CoordinatorLessonPlan /></CoordinatorLayout>} />
         <Route path="/coordinator/teacher" element={<CoordinatorLayout><CoordinatorTeacher /></CoordinatorLayout>} />
         <Route path="/coordinator/reports" element={<CoordinatorLayout><CoordinatorReports /></CoordinatorLayout>} />
         <Route path="/coordinator/settings" element={<CoordinatorLayout><CoordinatorSettings /></CoordinatorLayout>} />
@@ -96,7 +97,8 @@ function App() {
         <Route path="/teacher/dashboard" element={<TeacherLayout><TeacherDashboard /></TeacherLayout>} />
         <Route path="/teacher/students" element={<TeacherLayout><TeacherStudents /></TeacherLayout>} />
         <Route path="/teacher/users" element={<TeacherLayout><TeacherManageUsers /></TeacherLayout>} />
-        <Route path="/teacher/courses" element={<TeacherLayout><TeacherManageCourses /></TeacherLayout>} />
+        <Route path="/teacher/courses" element={<TeacherLayout><TeacherManageCourses /></TeacherLayout>} /> 
+        <Route path="/teacher/courses/:courseName" element={<TeacherLayout><TeacherLessonPlan /></TeacherLayout>} />
         <Route path="/teacher/teacher" element={<TeacherLayout><TeacherTeacher /></TeacherLayout>} />
         <Route path="/teacher/reports" element={<TeacherLayout><TeacherReports /></TeacherLayout>} />
         <Route path="/teacher/settings" element={<TeacherLayout><TeacherSettings /></TeacherLayout>} />

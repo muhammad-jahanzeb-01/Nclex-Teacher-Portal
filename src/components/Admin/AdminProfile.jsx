@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./AdminProfile.css";
+import DP from '../../assets/OnePiece.jpg'
 import { FiEdit2, FiLogOut, FiSave, FiX } from "react-icons/fi";
 
 const AdminProfile = () => {
@@ -35,7 +36,7 @@ const AdminProfile = () => {
     <div className="admin-card">
       <div className="admin-avatar-section">
         <img
-          src="https://via.placeholder.com/120"
+          src={DP}
           alt="Admin"
           className="admin-avatar"
         />

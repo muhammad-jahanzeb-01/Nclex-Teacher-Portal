@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import './ManageCourses.css';
 import { MdSearch } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 
-const CoursesOffered = () => {
+const ManageCourses = () => {
+  const navigate = useNavigate();
+
   const [courses, setCourses] = useState([
     {
       name: 'Mathematics 101',
@@ -68,6 +71,10 @@ const CoursesOffered = () => {
     setShowModal(false);
   };
 
+  const handleRowClick = (courseName) => {
+    navigate(`/teacher/courses/${encodeURIComponent(courseName)}`);
+  };
+
   return (
     <div className="courses-container">
       <div className="courses-header">
@@ -98,7 +105,7 @@ const CoursesOffered = () => {
           </thead>
           <tbody>
             {courses.map((course, index) => (
-              <tr key={index}>
+              <tr key={index} onClick={() => handleRowClick(course.name)} className="clickable-row">
                 <td>{course.name}</td>
                 <td>{course.description}</td>
                 <td>{course.teacher || '-'}</td>
@@ -110,7 +117,6 @@ const CoursesOffered = () => {
         </table>
       </div>
 
-      {/* Modal */}
       {showModal && (
         <div className="modal-overlay">
           <div className="modal">
@@ -133,4 +139,4 @@ const CoursesOffered = () => {
   );
 };
 
-export default CoursesOffered;
+export default ManageCourses;

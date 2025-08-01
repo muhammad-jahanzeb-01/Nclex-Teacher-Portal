@@ -31,7 +31,7 @@ const UploadLessonPlans = () => {
   return (
     <div className="course-detail">
       <div className="upload-header">
-        <button className="back-button" onClick={() => navigate('/admin/courses')}>← Back</button>
+        <button className="back-button" onClick={() => navigate('/coordinator/courses')}>← Back</button>
         <h2>Upload Lesson Plan - {decodeURIComponent(courseName)}</h2>
       </div>
 
