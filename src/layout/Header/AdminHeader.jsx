@@ -37,7 +37,7 @@ const AdminHeader = () => {
     <header className="header">
       <div className="header-container">
         <div className="header-brand">
-          <h1 className="brand-logo">Admin Portal</h1>
+          <h1 className="brand-logo">Nclex Admin Portal</h1>
         </div>
 
         <div className="header-actions">

@@ -36,7 +36,7 @@ const CoordinatorHeader = () => {
     <header className="header">
       <div className="header-container">
         <div className="header-brand">
-          <h1 className="brand-logo">Coordinator Portal</h1>
+          <h1 className="brand-logo">Nclex Coordinator Portal</h1>
         </div>
 
         <div className="header-actions">

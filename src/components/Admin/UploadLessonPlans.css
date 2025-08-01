@@ -59,7 +59,8 @@
 }
 
 .upload-table th {
-  background-color: #f0f0f0;
+  background-color: #1f50aa !important;
+  /* background-color: #007bff !important; */
 }
 .upload-section input[type="text"] {
   padding: 8px;

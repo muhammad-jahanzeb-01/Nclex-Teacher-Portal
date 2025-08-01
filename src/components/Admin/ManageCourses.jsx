@@ -105,7 +105,7 @@ const ManageCourses = () => {
           </thead>
           <tbody>
             {courses.map((course, index) => (
-              <tr key={index} onClick={() => handleRowClick(course.name)} className="clickable-row">
+              <tr  className="clickable-row" key={index} onClick={() => handleRowClick(course.name)} className="clickable-row">
                 <td>{course.name}</td>
                 <td>{course.description}</td>
                 <td>{course.teacher || '-'}</td>

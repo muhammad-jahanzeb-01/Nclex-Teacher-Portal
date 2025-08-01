@@ -4,19 +4,8 @@ import { FaChalkboardTeacher, FaUserGraduate } from "react-icons/fa";
 
 const Registrations = () => {
   const [selectedRole, setSelectedRole] = useState("Teacher");
-  const [showModal, setShowModal] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
-
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    address: "",
-    cnic: "",
-    password: "",
-    confirmPassword: ""
-  });
 
   const [entries, setEntries] = useState({
     Teacher: [],
@@ -32,41 +21,21 @@ const Registrations = () => {
     localStorage.setItem("registrations", JSON.stringify(entries));
   }, [entries]);
 
-  const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const updatedEntries = { ...entries };
-
-    if (isEditing) {
-      updatedEntries[selectedRole][editIndex] = formData;
-      setIsEditing(false);
-      setEditIndex(null);
-    } else {
-      updatedEntries[selectedRole].push(formData);
-    }
-
-    setEntries(updatedEntries);
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      address: "",
-      cnic: "",
-      password: "",
-      confirmPassword: ""
-    });
-    setShowModal(false);
-  };
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+    cnic: "",
+    password: "",
+    confirmPassword: ""
+  });
 
   const handleEdit = (index) => {
     const entryToEdit = entries[selectedRole][index];
     setFormData(entryToEdit);
     setEditIndex(index);
     setIsEditing(true);
-    setShowModal(true);
   };
 
   const handleDelete = (index) => {
@@ -79,7 +48,7 @@ const Registrations = () => {
     <div className="registration">
       <div className="page-header">
         <h1>User Registration</h1>
-        <p>Select a role and register a new user</p>
+        <p>Select a role to view entries</p>
       </div>
 
       <div className="registration-tabs">
@@ -95,123 +64,7 @@ const Registrations = () => {
         >
           <FaUserGraduate /> Student
         </button>
-        <button className="submit-btn" onClick={() => setShowModal(true)}>
-          + Add {selectedRole}
-        </button>
       </div>
-
-      {showModal && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <form onSubmit={handleSubmit} className="registration-form">
-              <div className="form-row">
-                <div className="form-group">
-                  <label>Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label>Phone</label>
-                  <input
-                    type="text"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label>CNIC</label>
-                  <input
-                    type="text"
-                    name="cnic"
-                    value={formData.cnic}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label>Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Confirm Password</label>
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label>Address</label>
-                <textarea
-                  name="address"
-                  value={formData.address}
-                  onChange={handleChange}
-                  required
-                ></textarea>
-              </div>
-
-              <div className="form-actions">
-                <button
-                  type="button"
-                  className="reset-btn"
-                  onClick={() => {
-                    setShowModal(false);
-                    setIsEditing(false);
-                    setEditIndex(null);
-                    setFormData({
-                      name: "",
-                      email: "",
-                      phone: "",
-                      address: "",
-                      cnic: "",
-                      password: "",
-                      confirmPassword: ""
-                    });
-                  }}
-                >
-                  Cancel
-                </button>
-                <button type="submit" className="submit-btn">
-                  {isEditing ? "Update" : "Register"}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
 
       <div className="table-container">
         <h3>{selectedRole} List</h3>

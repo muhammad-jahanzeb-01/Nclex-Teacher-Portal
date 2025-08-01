@@ -17,7 +17,7 @@ import AdminReports from "./components/Admin/Reports";
 import AdminSettings from "./components/Admin/Settings";
 import AdminProfile from "./components/Admin/AdminProfile";
 import WeeklyBreakdownUploader from "./components/Admin/WeeklyBreakdownUploader";
-import AttendanceViewer from "./components/Admin/AttendanceViewer";
+// import AttendanceViewer from "./components/Admin/AttendanceViewer";
 import Students from "./components/Admin/ManageStudents";
 import Registration from "./components/Admin/Registrations";
 import Principals from "./components/Admin/Principals";
@@ -72,7 +72,7 @@ function App() {
         <Route path="/admin/settings" element={<AdminLayout><AdminSettings /></AdminLayout>} />
         <Route path="/admin/profile" element={<AdminLayout><AdminProfile /></AdminLayout>} />
         <Route path="/admin/weekly-breakdown" element={<AdminLayout><WeeklyBreakdownUploader /></AdminLayout>} />
-        <Route path="/admin/attendance" element={<AdminLayout><AttendanceViewer /></AdminLayout>} />
+        {/* <Route path="/admin/attendance" element={<AdminLayout><AttendanceViewer /></AdminLayout>} /> */}
         <Route path="/admin/registration" element={<AdminLayout><Registration /></AdminLayout>} />
         <Route path="/admin/principals" element={<AdminLayout><Principals /></AdminLayout>} />
         <Route path="/admin/lesson-plan" element={<AdminLayout><UploadLessonsPlans /></AdminLayout>} /> {/* ✅ Fixed */}

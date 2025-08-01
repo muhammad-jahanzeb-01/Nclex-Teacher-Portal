@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import * as XLSX from "xlsx";
 import "./Registrations.css";
 import { FaChalkboardTeacher, FaUserGraduate, FaUserTie } from "react-icons/fa";
 
@@ -15,7 +16,8 @@ const Registrations = () => {
     address: "",
     cnic: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    campus: ""
   });
 
   const [entries, setEntries] = useState({
@@ -50,15 +52,7 @@ const Registrations = () => {
     }
 
     setEntries(updatedEntries);
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      address: "",
-      cnic: "",
-      password: "",
-      confirmPassword: ""
-    });
+    resetForm();
     setShowModal(false);
   };
 
@@ -74,6 +68,50 @@ const Registrations = () => {
     const updatedEntries = { ...entries };
     updatedEntries[selectedRole].splice(index, 1);
     setEntries(updatedEntries);
+  };
+
+  const resetForm = () => {
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+      cnic: "",
+      password: "",
+      confirmPassword: "",
+      campus: ""
+    });
+    setIsEditing(false);
+    setEditIndex(null);
+  };
+
+  const handleExcelUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      const bstr = evt.target.result;
+      const workbook = XLSX.read(bstr, { type: "binary" });
+      const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+      const jsonData = XLSX.utils.sheet_to_json(worksheet, { defval: "" });
+
+      const expectedKeys = ["name", "email", "phone", "cnic", "address", "campus", "password", "confirmPassword"];
+      const isValid = jsonData.every((row) =>
+        expectedKeys.every((key) => key in row)
+      );
+
+      if (!isValid) {
+        alert("Invalid Excel format. Required columns: " + expectedKeys.join(", "));
+        return;
+      }
+
+      const updatedEntries = { ...entries };
+      updatedEntries[selectedRole] = [...updatedEntries[selectedRole], ...jsonData];
+      setEntries(updatedEntries);
+    };
+
+    reader.readAsBinaryString(file);
   };
 
   return (
@@ -102,9 +140,20 @@ const Registrations = () => {
         >
           <FaUserGraduate /> Student
         </button>
+
         <button className="submit-btn" onClick={() => setShowModal(true)}>
           + Add {selectedRole}
         </button>
+
+        <label className="upload-label">
+          📥 Upload Excel
+          <input
+            type="file"
+            accept=".xlsx, .xls"
+            onChange={handleExcelUpload}
+            style={{ display: "none" }}
+          />
+        </label>
       </div>
 
       {showModal && (
@@ -180,6 +229,24 @@ const Registrations = () => {
                 </div>
               </div>
 
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Campus</label>
+                  <select
+                    name="campus"
+                    value={formData.campus}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Select Campus</option>
+                    <option value="Main Campus">Main Campus</option>
+                    <option value="North Campus">North Campus</option>
+                    <option value="South Campus">South Campus</option>
+                    <option value="Online">Online</option>
+                  </select>
+                </div>
+              </div>
+
               <div className="form-group">
                 <label>Address</label>
                 <textarea
@@ -196,17 +263,7 @@ const Registrations = () => {
                   className="reset-btn"
                   onClick={() => {
                     setShowModal(false);
-                    setIsEditing(false);
-                    setEditIndex(null);
-                    setFormData({
-                      name: "",
-                      email: "",
-                      phone: "",
-                      address: "",
-                      cnic: "",
-                      password: "",
-                      confirmPassword: ""
-                    });
+                    resetForm();
                   }}
                 >
                   Cancel
@@ -230,6 +287,7 @@ const Registrations = () => {
               <th>Phone</th>
               <th>CNIC</th>
               <th>Address</th>
+              <th>Campus</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -241,6 +299,7 @@ const Registrations = () => {
                 <td>{entry.phone}</td>
                 <td>{entry.cnic}</td>
                 <td>{entry.address}</td>
+                <td>{entry.campus}</td>
                 <td>
                   <button
                     onClick={() => handleEdit(index)}

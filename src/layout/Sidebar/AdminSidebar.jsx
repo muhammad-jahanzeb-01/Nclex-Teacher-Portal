@@ -36,7 +36,7 @@ const AdminSidebar = () => {
     { icon: MdDashboard, label: "Home", href: "/admin/dashboard" },
     { icon: MdLibraryBooks, label: "Courses", href: "/admin/courses" },
     { icon: MdHowToReg, label: "Registration", href: "/admin/registration" },
-    { icon: MdCalendarToday, label: "Attendance", href: "/admin/attendance" },
+    // { icon: MdCalendarToday, label: "Attendance", href: "/admin/attendance" },
     { icon: MdBarChart, label: "Reports", href: "/admin/reports" },
     { icon: MdPerson, label: "Profile", href: "/admin/profile" },
     { icon: MdSettings, label: "Settings", href: "/admin/settings" },
